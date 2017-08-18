@@ -29,8 +29,10 @@ matrix:
       - make test
     before_deploy:
       - export RELEASE_DMG_FILE=$(ls Fips-*.dmg)
+      - echo "deploying $RELEASE_PKG_FILE to S3"
     deploy:
       skip_cleanup: true
+      file_glob: true
       file: "${RELEASE_DMG_FILE}"
       on:
         branch: travis
