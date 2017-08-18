@@ -31,7 +31,7 @@ matrix:
       - export RELEASE_DMG_FILE=$(ls Fips-*.dmg)
     deploy:
       skip_cleanup: true
-      file: ${RELEASE_DMG_FILE}
+      file: "${RELEASE_DMG_FILE}"
       on:
         branch: travis
       provider: s3
