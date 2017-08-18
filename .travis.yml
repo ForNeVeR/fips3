@@ -27,6 +27,20 @@ matrix:
       - make package DESTDIR=$(pwd)/install
     script:
       - make test
+    deploy:
+      skip_cleanup: true
+      file_glob: true
+      file:
+        - Fips-*.dmg
+        - Fips-*.sha256
+      on:
+        branch: travis
+      provider: s3
+      access_key_id: AKIAI33RLRBHM2MVDSSQ
+      secret_access_key:
+        secure: GlEVq8gkhPB4Ezvya60WDZvTw+73YUz73Hm38RbBOgiw1yK2L01y/be5EvARP1RnkSFZR+EXqLPEWymr+nf10PFqa8ZLe/ueiiAqOMS12v+EA3XP73Yny5egtfhmqYcmSLkX12dVL9dlEhNee+NikPtVg01Xr31AIdFkaYUQ/VJF/CqFfasBMielKA7V/1EEUZ0OMyhxo8U8eL3kQhc4ju23pDdBWYNzIsNzLM8A/8sdFiSRN+Qj49BWF4ARQCXhFC1dIziYj4Xhz0qKJU6UJXtohb1x+ji/unSufFeq8lYLeh+f5BP06ynbVBeaga6mipcAhKAfYqCgPGBTOdcECIA9+uwlSvz1bzI43kTjGdVtAukI/sgFPCQ1po5KptspUn8109kEDVs8c/kZGoQNkbRuvp4VX7PTmQO9yyc5aO6J1Pb6TfyhYkwynRmqksFTICU0aXbUeE88MXdJme7x9vFr4cMjar1jhpAc86c6cVjOsoGxBTRtYiM058Skvu/LlG6SG56HzRj6G41padbSMxVC8BzpArkBDP72BgDD/GCrk87C775ExVExUWpZsiPaZBe4IPz53W3meQw9Pwd0dGuEVwIY7evYxHJ6QKl1m1PEaBYtE5ChBIfCkXRQZho3wPEXxtJMxTjg+4AVs126dBUr8DXi+aHSEp40sV5M8Ts=
+      bucket: homb.it
+region: eu-central-1
 
 env:
  - BASE_IMAGE_TAG=gcc7-qt59
