@@ -27,12 +27,12 @@ matrix:
       - make package DESTDIR=$(pwd)/install
     script:
       - make test
+    before_deploy:
+      - export RELEASE_DMG_FILE=$(ls Fips-*.dmg)
     deploy:
       skip_cleanup: true
-      file_glob: true
       file:
-        - Fips-*.dmg
-        - Fips-*.sha256
+        - ${RELEASE_DMG_FILE}
       on:
         branch: travis
       provider: s3
